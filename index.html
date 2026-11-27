@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Niccolò Pattofatto — Computational Aerodynamics</title>
-<meta name="description" content="Niccolò Pattofatto, BSc Aerospace Engineering at Politecnico di Milano. Technical reports on CFD and simulation automation.">
-<meta property="og:title" content="Niccolò Pattofatto — Computational Aerodynamics">
-<meta property="og:description" content="Technical reports on CFD and simulation automation, Fly-Mi EUROAVIA Milano.">
-<meta property="og:image" content="img/hemera-cfd-cruise.jpg">
+<title>Niccolò Pattofatto · Computational Aerodynamics</title>
+<meta name="description" content="Niccolò Pattofatto, BSc Aerospace Engineering at Politecnico di Milano. Technical reports and papers on CFD and simulation automation.">
+<meta property="og:title" content="Niccolò Pattofatto · Computational Aerodynamics">
+<meta property="og:description" content="Technical reports and papers on CFD and simulation automation, Fly-Mi EUROAVIA Milano.">
+<meta property="og:image" content="https://npattofatto.github.io/portfolio/img/hemera-cfd-cruise.jpg">
 <style>
   :root {
     --bg: #fbfbf9;
@@ -52,7 +52,7 @@
     margin: 0 0 10px;
   }
   .affil { color: var(--muted); margin: 0 0 18px; }
-  .intro { max-width: 640px; margin: 0 0 22px; }
+  .intro { max-width: 680px; margin: 0 0 22px; }
   .links { display: flex; flex-wrap: wrap; gap: 8px 22px; padding: 0; margin: 0; list-style: none; font-size: 0.95rem; }
   .links a { font-weight: 500; }
 
@@ -75,7 +75,7 @@
     padding: 30px 0;
     border-bottom: 1px solid var(--line);
   }
-  article:last-of-type { border-bottom: none; }
+  article.last { border-bottom: none; }
   figure { margin: 0; }
   figure img {
     display: block; width: 100%; height: auto;
@@ -86,9 +86,9 @@
   .kicker { font-size: 0.8rem; color: var(--muted); margin: 0 0 4px; letter-spacing: 0.02em; }
   article h3 { font: 600 1.25rem/1.3 var(--serif); margin: 0 0 4px; }
   .authors { font-size: 0.92rem; color: var(--muted); margin: 0 0 12px; }
-  article p.summary { margin: 0 0 12px; }
-  .role { font-size: 0.93rem; margin: 0 0 14px; }
-  .role strong { font-weight: 600; }
+  article p.role, article p.abstract, article p.results { font-size: 0.96rem; margin: 0 0 10px; }
+  article p.results { margin-bottom: 14px; }
+  article p strong { font-weight: 600; }
   .actions { display: flex; flex-wrap: wrap; gap: 8px; }
   .btn {
     display: inline-block;
@@ -101,14 +101,21 @@
   .btn.secondary { border-color: var(--line); color: var(--muted); }
   .btn.secondary:hover { color: var(--accent); border-color: var(--accent); }
 
-  .stack img + img { margin-top: 8px; }
+  .stack a + a img { margin-top: 8px; }
+
+  /* Certificates */
+  article.cert { grid-template-columns: 200px 1fr; gap: 24px; padding: 24px 0; }
+  article.cert h3 { font-size: 1.1rem; }
+  article.cert p.abstract { margin-bottom: 12px; }
+  article.cert figure a:hover img { border-color: var(--accent); }
 
   footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 0.82rem; color: var(--muted); }
 
   @media (max-width: 680px) {
     main { padding-top: 40px; }
     header h1 { font-size: 1.9rem; }
-    article { grid-template-columns: 1fr; gap: 16px; }
+    article, article.cert { grid-template-columns: 1fr; gap: 16px; }
+    article.cert figure { max-width: 260px; }
   }
 </style>
 </head>
@@ -118,10 +125,8 @@
   <header>
     <h1>Niccolò Pattofatto</h1>
     <p class="affil">BSc Aerospace Engineering, Politecnico di Milano · Head of Aerodynamics, Fly-Mi EUROAVIA Milano</p>
-    <p class="intro">I work on computational aerodynamics and multi-fidelity surrogate modelling. At Fly-Mi, a student team that designs fixed-wing UAVs for international aerodesign competitions, I lead the CFD methodology of the Aerodynamics Department. This page collects the reports and papers behind that work.</p>
+    <p class="intro">Third-year Aerospace Engineering student at Politecnico di Milano (29.64/30, Top Freshmen Award), focused on computational aerodynamics and multi-fidelity modeling. I taught myself CFD, brought it into the design loop of Fly-Mi, a 100-member student UAV team, by building an automated pipeline, and took it from my laptop to Italy's national supercomputing center as Principal Investigator. Fly-Mi has been my ground for research, design, teamwork and leadership; I now lead its Aerodynamics Department. This page collects the reports and papers behind that work.</p>
     <ul class="links">
-      <!-- Put the current CV in papers/ with exactly this file name -->
-      <li><a href="papers/CV_Niccolo_Pattofatto.pdf">CV</a></li>
       <li><a href="mailto:niccolopattofatto@yahoo.com">Email</a></li>
       <li><a href="https://www.linkedin.com/in/niccolo-pattofatto">LinkedIn</a></li>
     </ul>
@@ -132,15 +137,16 @@
   <!-- 1. Heméra CFD report -->
   <article>
     <figure>
-      <img src="img/hemera-cfd-cruise.jpg" alt="Surface pressure distribution on the Heméra aircraft in cruise at 35 m/s, from an OpenFOAM RANS simulation" loading="lazy">
-      <figcaption>Surface pressure distribution on Heméra in cruise, 35 m/s.</figcaption>
+      <a href="img/hemera-cfd-cruise.jpg"><img src="img/hemera-cfd-cruise.jpg" alt="Surface pressure distribution on the Heméra aircraft at the cruise design point, from an OpenFOAM RANS simulation" loading="lazy"></a>
+      <figcaption>Surface pressure distribution on Heméra at the cruise design point.</figcaption>
     </figure>
     <div>
       <p class="kicker">Technical report · October 2026 · 61 pages</p>
       <h3>Heméra: Aerodynamic Design through CFD</h3>
       <p class="authors">N. Pattofatto · Fly-Mi EUROAVIA Milano, Aerodynamics Department</p>
-      <p class="summary">The CFD campaign behind Heméra, Fly-Mi's entry to the Air Cargo Challenge 2026: 42 steady RANS simulations (OpenFOAM, k–ω SST) on half-aircraft domains, run between November 2025 and June 2026. It covers fuselage shape optimisation, wing and high-lift devices, the complete aircraft in cruise, at high incidence and in the take-off run with ground effect, a winglet study and a rotating-propeller feasibility study. An automatic convergence criterion stops each run once the oscillation range and the regression slope of the force coefficients meet set thresholds, then averages them: in cruise, the oscillation of the lift coefficient fell from 3.8% with the residual-based stop to 0.1%.</p>
-      <p class="role"><strong>My role:</strong> author; led the campaign, set up the meshing and numerical strategy, and ran the simulations reported.</p>
+      <p class="role"><strong>My role.</strong> Sole author; work done in my second year of the BSc. I led the campaign, built the meshing and numerical setup and ran the 42 simulations; five polar points computed by other members of the department are credited as such.</p>
+      <p class="abstract">The CFD campaign that brought aerodynamics into the design decisions of Heméra, Fly-Mi's aircraft for the Air Cargo Challenge 2026. Steady RANS simulations in OpenFOAM, run on a laptop, were used to choose the fuselage, to analyze the wing and high-lift devices, and to study the complete aircraft in cruise, at high incidence and at takeoff.</p>
+      <p class="results"><strong>Results.</strong> The fuselage candidates differed by less than 1% in total drag, two thirds of it friction, so the tail cone was chosen for flow quality, not for a drag figure: it removes a vortex pair from the aft body. Retracting the landing gear cut cruise drag by 13.6%. The report states the resolution of each comparison and its limits: a fully turbulent model where the boundary layer is probably partly laminar, and a two-level mesh study.</p>
       <div class="actions">
         <a class="btn" href="papers/Pattofatto_2026_Hemera_CFD_report.pdf">PDF</a>
       </div>
@@ -157,8 +163,9 @@
       <p class="kicker">Technical report · November 2026 · 25 pages</p>
       <h3>Runner: an Interactive, Unattended Case Manager for OpenFOAM</h3>
       <p class="authors">N. Pattofatto · Fly-Mi EUROAVIA Milano, Aerodynamics Department</p>
-      <p class="summary">The case manager behind the Heméra campaign, where each half-aircraft simulation of 15 to 17 million cells ran for several hours on a laptop. Configured once through menus on the terminal, it takes a case from the CAD parts to averaged force coefficients, convergence plots and a standard set of images without intervention: geometry alignment, case generation from named parameters, parallel meshing with a mesh-quality gate, parallel solution, automatic stop and remote notification. Its central element is a convergence monitor that stops the solver only when the residuals are below a threshold and the force and moment coefficients lie on a plateau, tested through the slope of a linear regression and their range over the last 200 iterations. In cruise, the oscillation of the lift coefficient fell from 3.8% with the residual-based stop to 0.1%.</p>
-      <p class="role"><strong>My role:</strong> author; designed the architecture, the parameter, meshing and post-processing models and the convergence criterion, and tested every version on real cases before production use. LLM tools were used as an aid in writing the code.</p>
+      <p class="role"><strong>My role.</strong> Sole author; designed in my second year of the BSc. I designed the runner end to end (architecture, logic, functions, fail-safes and the convergence criterion), directed LLM tools to write the code and validated every version on real cases.</p>
+      <p class="abstract">A case manager for OpenFOAM that takes a simulation from the CAD parts to averaged coefficients, plots and images without intervention, and stops the solver only when the forces, not just the residuals, have converged. I built it to run cases of 15 to 17 million cells unattended on a laptop, each taking an hour to mesh and six to twelve hours to solve.</p>
+      <p class="results"><strong>Results.</strong> Runs stopped on residuals alone ended with the lift coefficient still varying by 4–9%, too much to compare designs that differ by less than 1%. With my criterion (residuals below a threshold, plus slope and range of the force coefficients over the last 200 iterations), the variation at cruise fell from 3.8% to 0.1% on the same condition, for 7–8 hours per case instead of about 6. The criterion establishes iterative convergence, not accuracy, and the report says so.</p>
       <div class="actions">
         <a class="btn" href="papers/Pattofatto_2026_Runner_report.pdf">PDF</a>
       </div>
@@ -166,11 +173,11 @@
   </article>
 
   <!-- 3. ACC 2026 technical report (team document) -->
-  <article>
+  <article class="last">
     <figure>
       <div class="stack">
-        <img src="img/hemera-flight.jpg" alt="Heméra in flight" loading="lazy">
-        <img src="img/flymi-team.jpg" alt="Members of Fly-Mi EUROAVIA Milano in a lecture hall" loading="lazy">
+        <a href="img/hemera-flight.jpg"><img src="img/hemera-flight.jpg" alt="Heméra in flight" loading="lazy"></a>
+        <a href="img/flymi-team.jpg"><img src="img/flymi-team.jpg" alt="Members of Fly-Mi EUROAVIA Milano in a lecture hall" loading="lazy"></a>
       </div>
       <figcaption>Heméra in flight; the Fly-Mi team.</figcaption>
     </figure>
@@ -178,8 +185,9 @@
       <p class="kicker">Competition technical report · May 2026 · 34 pages</p>
       <h3>Air Cargo Challenge 2026 – Technical Report, Team 12: Heméra</h3>
       <p class="authors">Fly-Mi EUROAVIA Milano · Politecnico di Milano</p>
-      <p class="summary">The team's design report for the Air Cargo Challenge 2026: project management, conceptual design, flight mechanics, aerodynamic, structural and electronics and propulsion design of Heméra, a twin-motor cargo UAV with a retractable main landing gear and a V-tail.</p>
-      <p class="role"><strong>My role:</strong> member of the Aerodynamics Department; the CFD results in the aerodynamic design chapter draw on the campaign I led, documented in full in the CFD report above.</p>
+      <p class="role"><strong>My role.</strong> Member of the Aerodynamics Department, in my second year of the BSc. The fuselage CFD and the polar in the aerodynamic design chapter come from the campaign I led, documented in the CFD report above.</p>
+      <p class="abstract">The design report the team submitted to the Air Cargo Challenge 2026, from project management and conceptual design to flight mechanics, aerodynamics, structures, electronics and propulsion. It is here for context: it shows the aircraft my simulations served.</p>
+      <p class="results"><strong>Results.</strong> Heméra, a twin-motor cargo UAV with a retractable main landing gear and a V-tail: 5.2 kg maximum takeoff mass, 40% payload fraction, sized for a 40 m takeoff and a 35 m/s top speed.</p>
       <div class="actions">
         <a class="btn" href="papers/FlyMi_2026_Hemera_ACC_Technical_Report.pdf">PDF</a>
       </div>
@@ -189,11 +197,11 @@
   <h2>Personal project</h2>
 
   <!-- 4. F1 paper -->
-  <article>
+  <article class="last">
     <figure>
       <div class="stack">
-        <img src="img/f1-floor-pressure.jpg" alt="Pressure distribution on a 2016 Formula 1 car fitted with floor vanes" loading="lazy">
-        <img src="img/f1-floor-vanes.jpg" alt="Detail of the floor vanes modelled in CATIA" loading="lazy">
+        <a href="img/f1-floor-pressure.jpg"><img src="img/f1-floor-pressure.jpg" alt="Pressure distribution on a 2016 Formula 1 car fitted with floor vanes" loading="lazy"></a>
+        <a href="img/f1-floor-vanes.jpg"><img src="img/f1-floor-vanes.jpg" alt="Detail of the floor vanes modeled in CATIA" loading="lazy"></a>
       </div>
       <figcaption>Pressure distribution on the car with the floor vanes; detail of the vanes.</figcaption>
     </figure>
@@ -201,11 +209,59 @@
       <p class="kicker">Research paper · September 2025 · 29 pages</p>
       <h3>Improving the Downforce of a Flat-Floor Formula 1 Car</h3>
       <p class="authors">N. Pattofatto · Independent project</p>
-      <p class="summary">A study of floor vanes, combined with a curled flap at the floor edge, to increase the downforce of a Formula 1 car built to the 2016 flat-floor regulations. The vanes are meant to create low-pressure regions under the floor and push the front-wheel wake outboard, keeping its losses away from the diffuser. Preliminary designs were tested in OpenFOAM on the open-source PERRINN 2016 car; the final geometry, modelled in 3DEXPERIENCE CATIA, was run on Bramble CFD. The best configuration, two sets of three vanes, gained 38.4 points of downforce for 2 points of drag. With only three final runs available, the effect of the curled flap could not be settled.</p>
-      <p class="role"><strong>Context:</strong> written in the summer after my first year, after two OpenFOAM courses (CFD Direct) and the Aerodynamics Career Accelerator Program (Motorsport Engineer). Presented at the program's Batch 4 round-table webinar, 7 October 2025.</p>
+      <p class="role"><strong>My role.</strong> Sole author of an independent study, done in the summer after my first year of the BSc, after a first OpenFOAM course (CFD Direct) and the Formula 1 Aerodynamics Program (Aero CAP, Motorsport Engineer). Invited to present it at the Aero CAP Round Table, an online webinar open to recruiters and students, in October 2025.</p>
+      <p class="abstract">Floor vanes that use the flow entering under a 2016 flat-floor Formula 1 car: they create low-pressure regions beneath the floor and push the front-wheel wake outboard, keeping its losses away from the diffuser. I developed them in OpenFOAM on the open-source PERRINN car, then modeled the final geometry in 3DEXPERIENCE CATIA and ran it on Bramble CFD.</p>
+      <p class="results"><strong>Results.</strong> Two sets of three vanes raised the downforce coefficient from 2.964 to 3.348, about 13%, for under 2% more drag (1.157 to 1.177). A second vane set, better aligned with the flow, gave no further downforce, and the one run with a curled flap at the floor edge lost downforce. With only three final runs, I could not establish whether a different flap would help.</p>
       <div class="actions">
         <a class="btn" href="papers/Pattofatto_2025_F1_flat_floor_downforce.pdf">Paper (PDF)</a>
         <a class="btn secondary" href="papers/Pattofatto_2025_F1_flat_floor_webinar_slides.pdf">Webinar slides</a>
+      </div>
+    </div>
+  </article>
+
+  <h2>Courses and certificates</h2>
+
+  <!-- 5. CFD Direct, Essential CFD -->
+  <article class="cert">
+    <figure>
+      <a href="papers/CFDDirect_2025_OpenFOAM_Essential_CFD_certificate.pdf"><img src="img/cert-cfddirect-essential.jpg" alt="Certificate of completion, OpenFOAM: Essential CFD, CFD Direct, 23 to 25 June 2025" loading="lazy"></a>
+    </figure>
+    <div>
+      <p class="kicker">June 2025 · CFD Direct · live online</p>
+      <h3>OpenFOAM: Essential CFD</h3>
+      <p class="abstract">A three-day course by CFD Direct, the company of OpenFOAM's core developers, on the general operation of OpenFOAM: meshing, case setup, running and post-processing a simulation. I took it before starting the Formula 1 study above.</p>
+      <div class="actions">
+        <a class="btn secondary" href="papers/CFDDirect_2025_OpenFOAM_Essential_CFD_certificate.pdf">Certificate (PDF)</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- 6. Motorsport Engineer, Aero CAP -->
+  <article class="cert">
+    <figure>
+      <a href="papers/MotorsportEngineer_2025_AeroCAP_certificate.pdf"><img src="img/cert-aerocap.jpg" alt="Certificate of completion, Aerodynamics Career Accelerator Program, Motorsport Engineer, issued 12 September 2025" loading="lazy"></a>
+    </figure>
+    <div>
+      <p class="kicker">Summer 2025 · Motorsport Engineer · six weeks</p>
+      <h3>Aerodynamics Career Accelerator Program (Aero CAP)</h3>
+      <p class="abstract">A Formula 1 aerodynamics course taught by David Felis, former Haas and Williams F1 aerodynamicist: performance metrics, aero maps, underfloor and wheel-wake management, with CATIA 3DEXPERIENCE for design and Bramble CFD for simulation. I used both tools in the Formula 1 study above.</p>
+      <div class="actions">
+        <a class="btn secondary" href="papers/MotorsportEngineer_2025_AeroCAP_certificate.pdf">Certificate (PDF)</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- 7. CFD Direct, Applied CFD -->
+  <article class="cert last">
+    <figure>
+      <a href="papers/CFDDirect_2025_OpenFOAM_Applied_CFD_certificate.pdf"><img src="img/cert-cfddirect-applied.jpg" alt="Certificate of completion, OpenFOAM: Applied CFD, CFD Direct, 24 to 26 September 2025" loading="lazy"></a>
+    </figure>
+    <div>
+      <p class="kicker">September 2025 · CFD Direct · live online</p>
+      <h3>OpenFOAM: Applied CFD</h3>
+      <p class="abstract">The follow-up course, on applying OpenFOAM to more complex cases: multiphase (VoF), compressible and thermal flows, conjugate heat transfer, dynamic meshes and Lagrangian particles. I took it before the Heméra campaign began in November 2025.</p>
+      <div class="actions">
+        <a class="btn secondary" href="papers/CFDDirect_2025_OpenFOAM_Applied_CFD_certificate.pdf">Certificate (PDF)</a>
       </div>
     </div>
   </article>
